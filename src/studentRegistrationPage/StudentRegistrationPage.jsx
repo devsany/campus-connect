@@ -48,7 +48,8 @@ const StudentRegistrationPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-[80px] bg-white shadow-lg rounded-lg ">
+    <div className="max-w-md mx-auto p-6 mt-[80px] bg-white shadow-
+    lg rounded-lg ">
       <h1 className="text-2xl font-bold text-center mb-6">
         Student Registration Page
       </h1>

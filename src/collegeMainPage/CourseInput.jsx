@@ -1,18 +1,14 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../context/Context";
 import { getDatabase, ref, get, update } from "firebase/database";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const CollegeLocationInput = () => {
+const CourseInput = () => {
   const nav = useNavigate();
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [country, setCountry] = useState("");
-  const [postal_code, setPostal_code] = useState("");
-  // const { userToken } = useContext(AppContext);
+  const [course, setCourse] = useState("");
+  const [department, setDepartment] = useState("");
   const userToken = localStorage.getItem("userToken");
   console.log(userToken);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,35 +33,35 @@ const CollegeLocationInput = () => {
         );
 
         if (userObj) {
-          // 3. Update the object with the new location data
+          // 3. Retrieve the current courses array if it exists, otherwise initialize an empty array
+          const currentCourses = userObj.courses || [];
+
+          // 4. Push the new course object into the courses array
+          currentCourses.push({
+            course,
+            department,
+          });
+
+          // 5. Update the object with the new courses array
           const updatedData = {
             ...userObj, // Preserve the existing data
-            location: {
-              street,
-              city,
-              state,
-              country,
-              postal_code,
-            },
+            courses: currentCourses,
           };
 
-          // 4. Find the key of the user object (which contains the userToken)
+          // 6. Find the key of the user object (which contains the userToken)
           const userKey = Object.keys(allData).find(
             (key) => allData[key].userToken === userToken
           );
 
           if (userKey) {
-            // 5. Update the object in the database
+            // 7. Update the object in the database
             await update(
               ref(db, `collegeRegistration/${userKey}`),
               updatedData
             );
-            console.log("Location updated successfully!");
-            setStreet("");
-            setCity("");
-            setState("");
-            setCountry("");
-            setPostal_code("");
+            console.log("Course added successfully!");
+            setCourse("");
+            setDepartment("");
             nav(`/college_main_page/${userToken}`);
           } else {
             console.log("User not found in the database.");
@@ -77,7 +73,7 @@ const CollegeLocationInput = () => {
         console.log("No data available.");
       }
     } catch (error) {
-      console.error("Error updating location: ", error);
+      console.error("Error adding course: ", error);
     }
   };
 
@@ -87,94 +83,47 @@ const CollegeLocationInput = () => {
         className="px-4 py-2 mx-4 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
         to={`/college_main_page/${userToken}`}
       >
-        back
+        Back
       </NavLink>
       <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            College Location Input
+            College Course Input
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex items-center">
               <label
-                htmlFor="street"
+                htmlFor="course"
                 className="w-1/3 text-sm font-medium text-gray-700"
               >
-                Street
+                Course
               </label>
               <input
                 type="text"
-                id="street"
-                placeholder="Enter street"
-                value={street}
-                onChange={(e) => setStreet(e.target.value)}
+                id="course"
+                placeholder="Enter course number of college"
+                value={course}
+                onChange={(e) => setCourse(e.target.value)}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
             <div className="flex items-center">
               <label
-                htmlFor="city"
+                htmlFor="department"
                 className="w-1/3 text-sm font-medium text-gray-700"
               >
-                City
+                Department
               </label>
               <input
                 type="text"
-                id="city"
-                placeholder="Enter city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                id="department"
+                placeholder="Enter department name"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
-            <div className="flex items-center">
-              <label
-                htmlFor="state"
-                className="w-1/3 text-sm font-medium text-gray-700"
-              >
-                State
-              </label>
-              <input
-                type="text"
-                id="state"
-                placeholder="Enter state"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div className="flex items-center">
-              <label
-                htmlFor="country"
-                className="w-1/3 text-sm font-medium text-gray-700"
-              >
-                Country
-              </label>
-              <input
-                type="text"
-                id="country"
-                placeholder="Enter country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
-            <div className="flex items-center">
-              <label
-                htmlFor="postal_code"
-                className="w-1/3 text-sm font-medium text-gray-700"
-              >
-                Postal Code
-              </label>
-              <input
-                type="number"
-                id="postal_code"
-                placeholder="Enter postal code"
-                value={postal_code}
-                onChange={(e) => setPostal_code(e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
-              />
-            </div>
+
             <button
               type="submit"
               className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -188,4 +137,4 @@ const CollegeLocationInput = () => {
   );
 };
 
-export default CollegeLocationInput;
+export default CourseInput;

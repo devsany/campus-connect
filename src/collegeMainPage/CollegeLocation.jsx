@@ -1,10 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AppContext } from "../context/Context";
+import { database } from "../firebase/firebaseCofig";
+import { get, getDatabase, ref } from "firebase/database";
 
 const CollegeLocation = () => {
-  const { userToken } = useContext(AppContext);
+  const [location, setLocation] = useState([]);
+  // const { userToken } = useContext(AppContext);
+  const userToken = localStorage.getItem("userToken");
+  console.log(userToken);
+  useEffect(() => {
+    const fetchData = async () => {
+      const db = getDatabase();
+      const dbRef = ref(db, "collegeRegistration"); // Reference to your data in Firebase Realtime Database
+      try {
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+          const allData = snapshot.val();
+          // If the snapshot exists, set the data to state
+          setLocation(snapshot.val());
+          const userObj = Object.values(allData).find(
+            (obj) => obj.userToken === userToken
+          );
+          setLocation(userObj.location);
+        } else {
+          console.log("No data available");
+        }
+      } catch (error) {
+        console.error("Error getting data from Firebase:", error);
+      }
+    };
 
+    fetchData(); // Fetch data when component mounts
+  }, []); // Empty dependency array to run only once on mount
+  console.log(location);
   return (
     <div>
       <div className="flex items-center space-x-2">
@@ -40,23 +69,23 @@ const CollegeLocation = () => {
       <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
         <div>
           <span className="font-medium">Street:</span>
-          <span className="ml-2">Bodhgaya Near Mangolia Temple</span>
+          <span className="ml-2">{location.street}</span>
         </div>
         <div>
           <span className="font-medium">City:</span>
-          <span className="ml-2">Gaya</span>
+          <span className="ml-2">{location.city}</span>
         </div>
         <div>
           <span className="font-medium">State:</span>
-          <span className="ml-2">Bihar</span>
+          <span className="ml-2">{location.state}</span>
         </div>
         <div>
           <span className="font-medium">Country:</span>
-          <span className="ml-2">India</span>
+          <span className="ml-2">{location.country}</span>
         </div>
         <div>
           <span className="font-medium">Postal code:</span>
-          <span className="ml-2">824231</span>
+          <span className="ml-2">{location.postal_code}</span>
         </div>
       </div>
     </div>

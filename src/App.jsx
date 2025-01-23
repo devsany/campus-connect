@@ -6,14 +6,13 @@ import CollageRegistrationPAge from "./CollgeRegistration/CollageRegistrationPAg
 import StudentAdditionalDetail from "./studentAdditionalDetail/StudentAdditionalDetail";
 import StudentRegistrationPage from "./studentRegistrationPage/StudentRegistrationPage";
 import StudentSignUpPage from "./studentSignUpPage/StudentSignUpPage";
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  UserButton,
-} from "@clerk/clerk-react";
 import MainNavbarSignIn from "./navbar/MainNavbarSignIn";
 import CollegeLocationInput from "./collegeMainPage/CollegeLocationInput";
+import Home from "./Home/Home";
+import AccreditationInput from "./collegeMainPage/AccreditationInput";
+import CollegeContactInput from "./collegeMainPage/CollegeContactInput";
+import CollegeWebsiteInput from "./collegeMainPage/CollegeWebsiteInput";
+import CourseInput from "./collegeMainPage/CourseInput";
 
 function App() {
   return (
@@ -22,6 +21,7 @@ function App() {
         <MainNavbarSignIn />
         {/* All route */}
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
             path="/sign_up_for_student"
             element={<StudentRegistrationPage />}
@@ -37,6 +37,22 @@ function App() {
           <Route
             path="/college_main_page/:id/college_location_input"
             element={<CollegeLocationInput />}
+          />
+          <Route
+            path="/college_main_page/:id/college_accreditation_input"
+            element={<AccreditationInput />}
+          />
+          <Route
+            path="/college_main_page/:id/college_contact_input"
+            element={<CollegeContactInput />}
+          />
+          <Route
+            path="/college_main_page/:id/college_website_input"
+            element={<CollegeWebsiteInput />}
+          />
+          <Route
+            path="/college_main_page/:id/college_course_input"
+            element={<CourseInput />}
           />
         </Routes>
         {/* <CollegeMainPage />

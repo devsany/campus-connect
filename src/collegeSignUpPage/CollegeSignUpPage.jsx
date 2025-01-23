@@ -46,6 +46,7 @@ const CollegeSignUpPage = () => {
         if (isMatch) {
           console.log("Password is correct! Proceed to login.");
           setUserToPage(user[0].userToken);
+          localStorage.setItem("userToken", user[0].userToken);
           setUserToken(user[0].userToken);
           nav(`/college_main_page/${user[0].userToken}`);
 

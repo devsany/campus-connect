@@ -1,4 +1,3 @@
-import { SignInButton } from "@clerk/clerk-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 

@@ -35,9 +35,6 @@ const CollegeMainPage = () => {
   return (
     <div className="mt-[70px] bg-gray-100 p-6 rounded-lg shadow-lg">
       {/* Page Header */}
-      <h1 className="text-3xl font-bold text-blue-700 text-center mb-6">
-        College Main Page - {id}
-      </h1>
 
       {/* College Header */}
       <div className="mb-6">

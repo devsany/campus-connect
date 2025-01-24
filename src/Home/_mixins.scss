@@ -1,0 +1,20 @@
+@mixin box-shadow($color: rgba(0, 0, 0, 0.1)) {
+    box-shadow: 0 4px 6px $color;
+  }
+  
+  @mixin font-style($size, $weight: normal, $color: $primary-color) {
+    font-size: $size;
+    font-weight: $weight;
+    color: $color;
+  }
+  
+  @mixin container($max-width: 400px, $padding: 16px) {
+    max-width: $max-width;
+    padding: $padding;
+    margin: 16px auto;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    @include box-shadow();
+  }
+  

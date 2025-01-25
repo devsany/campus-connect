@@ -9,8 +9,8 @@ import StudentSignUpPage from "./studentSignUpPage/StudentSignUpPage";
 import MainNavbarSignIn from "./navbar/MainNavbarSignIn";
 import CollegeLocationInput from "./collegeMainPage/CollegeLocationInput";
 import Home from "./Home/Home";
-import AccreditationInput from "./collegeMainPage/AccreditationInput";
-import CollegeContactInput from "./collegeMainPage/CollegeContactInput";
+import AccreditationInput from "./collegeMainPage/AccreditationInput/";
+import CollegeContactInput from "./collegeMainPage/CollegeContactInput/CollegeContactInput";
 import CollegeWebsiteInput from "./collegeMainPage/CollegeWebsiteInput";
 import CourseInput from "./collegeMainPage/CourseInput";
 

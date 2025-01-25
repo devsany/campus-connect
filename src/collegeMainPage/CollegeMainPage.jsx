@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CollegeMainPageHeader from "./CollegeMainPageHeader";
 import CollegeLocation from "./CollegeLocation";
-import Accreditation from "./Accreditation";
+import Accreditation from "./Accreditation/";
 import CoursesOffered from "./coursesOffered";
-import CollegeContact from "./CollegeContact";
+import CollegeContact from "./CollegeContact/CollegeContact";
 import CollegeWebsite from "./CollegeWebsite";
 import { useParams } from "react-router-dom";
 import { database } from "../firebase/firebaseCofig";

@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { AppContext } from "../context/Context";
+import { AppContext } from "../../context/Context";
 import { getDatabase, ref, get, update } from "firebase/database";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const AccreditationInput = () => {
+const CollegeContactInput = () => {
   const nav = useNavigate();
-  const [accreditation, setAccreditation] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   // const { userToken } = useContext(AppContext);
   const userToken = localStorage.getItem("userToken");
@@ -37,8 +38,9 @@ const AccreditationInput = () => {
           // 3. Update the object with the new location data
           const updatedData = {
             ...userObj, // Preserve the existing data
-            accreditation: {
-              accreditation,
+            contact: {
+              phone,
+              email,
             },
           };
 
@@ -53,8 +55,9 @@ const AccreditationInput = () => {
               ref(db, `collegeRegistration/${userKey}`),
               updatedData
             );
-            alert("Accreditation updated successfully!");
-            setAccreditation("");
+            console.log("Location updated successfully!");
+            setPhone("");
+            setEmail("");
             nav(`/college_main_page/${userToken}`);
           } else {
             console.log("User not found in the database.");
@@ -81,22 +84,38 @@ const AccreditationInput = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            College Accreditation Input
+            College Contact Input
           </h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex items-center">
               <label
-                htmlFor="accreditation"
+                htmlFor="phone"
                 className="w-1/3 text-sm font-medium text-gray-700"
               >
-                Accreditation
+                Phone
               </label>
               <input
                 type="text"
-                id="accreditation"
-                placeholder="Enter college accreditation"
-                value={accreditation}
-                onChange={(e) => setAccreditation(e.target.value)}
+                id="phone"
+                placeholder="Enter Phone number of college"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
+            <div className="flex items-center">
+              <label
+                htmlFor="email"
+                className="w-1/3 text-sm font-medium text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="text"
+                id="email"
+                placeholder="Enter Email of college"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
@@ -114,4 +133,4 @@ const AccreditationInput = () => {
   );
 };
 
-export default AccreditationInput;
+export default CollegeContactInput;

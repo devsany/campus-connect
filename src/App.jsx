@@ -7,12 +7,12 @@ import StudentAdditionalDetail from "./studentAdditionalDetail/StudentAdditional
 import StudentRegistrationPage from "./studentRegistrationPage/StudentRegistrationPage";
 import StudentSignUpPage from "./studentSignUpPage/StudentSignUpPage";
 import MainNavbarSignIn from "./navbar/MainNavbarSignIn";
-import CollegeLocationInput from "./collegeMainPage/CollegeLocationInput";
+import CollegeLocationInput from "./collegeMainPage/CollegeLocationInput/CollegeLocationInput";
 import Home from "./Home/Home";
 import AccreditationInput from "./collegeMainPage/AccreditationInput/";
 import CollegeContactInput from "./collegeMainPage/CollegeContactInput/CollegeContactInput";
-import CollegeWebsiteInput from "./collegeMainPage/CollegeWebsiteInput";
-import CourseInput from "./collegeMainPage/CourseInput";
+import CollegeWebsiteInput from "./collegeMainPage/CollegeWebsiteInput/CollegeWebsiteInput";
+import CourseInput from "./collegeMainPage/CourseInput/CourseInput";
 
 function App() {
   return (

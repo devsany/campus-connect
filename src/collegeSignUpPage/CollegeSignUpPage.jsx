@@ -13,7 +13,6 @@ const CollegeSignUpPage = () => {
   const [data, setData] = useState([]);
   const [userToPage, setUserToPage] = useState("");
   const [signInError, setSignInError] = useState(true);
-  const hashedPassword = async () => {};
 
   const { setUserToken } = useContext(AppContext);
   useEffect(() => {
@@ -30,7 +29,7 @@ const CollegeSignUpPage = () => {
     return () => unsubscribe();
   }, []);
 
-  console.log(data);
+  // console.log(data);
 
   const handleSubmitCollgeSignUp = async (e) => {
     console.log("clicked");
@@ -44,7 +43,7 @@ const CollegeSignUpPage = () => {
         const isMatch = await bcrypt.compare(password, user[0].password);
 
         if (isMatch) {
-          console.log("Password is correct! Proceed to login.");
+          // alert("Password is correct! Proceed to login.");
           setUserToPage(user[0].userToken);
           localStorage.setItem("userToken", user[0].userToken);
           setUserToken(user[0].userToken);
@@ -52,7 +51,7 @@ const CollegeSignUpPage = () => {
 
           // Perform further actions, like setting user session
         } else {
-          console.log("Password is incorrect. Try again.");
+          alert("Password is incorrect. Try again.");
         }
       } else {
         console.log("User not found.");
@@ -61,7 +60,7 @@ const CollegeSignUpPage = () => {
       console.log("No users found in the database.");
     }
   };
-  console.log(userToPage);
+  // console.log(userToPage);
   return (
     <div className="min-h-screen  flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">

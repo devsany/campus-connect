@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import CollegeMainPageHeader from "./CollegeMainPageHeader";
-import CollegeLocation from "./CollegeLocation";
+import CollegeMainPageHeader from "./CollegeMainPageHeader/CollegeMainPageHeader";
+import CollegeLocation from "./CollegeLocation/CollegeLocation";
 import Accreditation from "./Accreditation/";
-import CoursesOffered from "./coursesOffered";
+import CoursesOffered from "./CoursesOffered";
 import CollegeContact from "./CollegeContact/CollegeContact";
-import CollegeWebsite from "./CollegeWebsite";
+import CollegeWebsite from "./CollegeWebsite/CollegeWebsite";
 import { useParams } from "react-router-dom";
 import { database } from "../firebase/firebaseCofig";
 import { onValue, ref } from "firebase/database";
@@ -13,7 +13,7 @@ const CollegeMainPage = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
   const [mainCollegeData, setMainCollegeData] = useState([]);
-  console.log(id);
+  // console.log(id);
   useEffect(() => {
     // Reference to the database path
     const dataRef = ref(database, "collegeRegistration");
@@ -31,7 +31,7 @@ const CollegeMainPage = () => {
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
-  console.log(mainCollegeData);
+  // console.log(mainCollegeData);
   return (
     <div className="mt-[70px] bg-gray-100 p-6 rounded-lg shadow-lg">
       {/* Page Header */}

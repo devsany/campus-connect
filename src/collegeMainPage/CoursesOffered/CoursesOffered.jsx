@@ -27,7 +27,7 @@ const CoursesOffered = () => {
           console.log("No data available");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error("Database is out of server:", error);
       }
     };
     fetchData();
@@ -61,7 +61,7 @@ const CoursesOffered = () => {
         }
       }
     } catch (error) {
-      console.error("Error updating course in Firebase:", error);
+      console.error("Database is out of server:", error);
     }
   };
 
@@ -86,7 +86,7 @@ const CoursesOffered = () => {
         }
       }
     } catch (error) {
-      console.error("Error removing course from Firebase:", error);
+      console.error("Database is out of server:", error);
     }
   };
 
@@ -190,4 +190,4 @@ const CoursesOffered = () => {
   );
 };
 
-export default CoursesOffered;
+export default React.memo(CoursesOffered);

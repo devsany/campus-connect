@@ -10,12 +10,12 @@ const CollegeContactInput = () => {
 
   // const { userToken } = useContext(AppContext);
   const userToken = localStorage.getItem("userToken");
-  console.log(userToken);
+  // console.log(userToken);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!userToken) {
-      console.log("User token is missing!");
+      console.log("User Sign In first!");
       return;
     }
 
@@ -55,7 +55,7 @@ const CollegeContactInput = () => {
               ref(db, `collegeRegistration/${userKey}`),
               updatedData
             );
-            console.log("Location updated successfully!");
+            alert("Contact updated successfully!");
             setPhone("");
             setEmail("");
             nav(`/college_main_page/${userToken}`);
@@ -66,7 +66,7 @@ const CollegeContactInput = () => {
           console.log("User with the given token not found.");
         }
       } else {
-        console.log("No data available.");
+        console.log("404 Error.");
       }
     } catch (error) {
       console.error("Error updating location: ", error);
@@ -133,4 +133,4 @@ const CollegeContactInput = () => {
   );
 };
 
-export default CollegeContactInput;
+export default React.memo(CollegeContactInput);

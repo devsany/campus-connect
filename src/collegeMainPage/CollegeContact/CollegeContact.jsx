@@ -7,7 +7,7 @@ const CollegeContact = () => {
 
   const [contact, setContact] = useState([]);
   // const { userToken } = useContext(AppContext);
-  console.log(userToken);
+  // console.log(userToken);
   useEffect(() => {
     const fetchData = async () => {
       const db = getDatabase();
@@ -23,10 +23,13 @@ const CollegeContact = () => {
           );
           setContact(userObj.contact);
         } else {
-          console.log("No data available");
+          console.log("404 Error: Data not found");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error(
+          "Data not available plz register and try to Sign In :",
+          error
+        );
       }
     };
 
@@ -71,4 +74,4 @@ const CollegeContact = () => {
   );
 };
 
-export default CollegeContact;
+export default React.memo(CollegeContact);

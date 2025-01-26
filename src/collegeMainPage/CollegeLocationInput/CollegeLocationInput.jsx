@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../context/Context";
+import React, { useState } from "react";
 import { getDatabase, ref, get, update } from "firebase/database";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -12,12 +11,12 @@ const CollegeLocationInput = () => {
   const [postal_code, setPostal_code] = useState("");
   // const { userToken } = useContext(AppContext);
   const userToken = localStorage.getItem("userToken");
-  console.log(userToken);
+  // console.log(userToken);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!userToken) {
-      console.log("User token is missing!");
+      console.log("Plz register first and try to login !");
       return;
     }
 
@@ -60,7 +59,7 @@ const CollegeLocationInput = () => {
               ref(db, `collegeRegistration/${userKey}`),
               updatedData
             );
-            console.log("Location updated successfully!");
+            alert("Location updated successfully!");
             setStreet("");
             setCity("");
             setState("");
@@ -74,10 +73,10 @@ const CollegeLocationInput = () => {
           console.log("User with the given token not found.");
         }
       } else {
-        console.log("No data available.");
+        console.log("404 Error.");
       }
     } catch (error) {
-      console.error("Error updating location: ", error);
+      console.error("Error updating location:", error);
     }
   };
 
@@ -188,4 +187,4 @@ const CollegeLocationInput = () => {
   );
 };
 
-export default CollegeLocationInput;
+export default React.memo(CollegeLocationInput);

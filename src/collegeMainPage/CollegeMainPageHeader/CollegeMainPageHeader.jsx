@@ -1,6 +1,6 @@
 import React from "react";
 
-const   CollegeMainPageHeader = ({ data }) => {
+const CollegeMainPageHeader = ({ data }) => {
   const { name, affiliation, email, establishedYear, phone, type } = data;
   return (
     <div className="rounded-lg">
@@ -62,4 +62,4 @@ const   CollegeMainPageHeader = ({ data }) => {
   );
 };
 
-export default CollegeMainPageHeader;
+export default React.memo(CollegeMainPageHeader);

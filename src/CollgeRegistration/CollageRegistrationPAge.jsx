@@ -34,13 +34,13 @@ const CollageRegistrationPAge = () => {
 
   //
   // Generate hash password
-  const handleHashPassword = async () => {
-    try {
-      return hash;
-    } catch (error) {
-      console.error("Coordiation not match:", error);
-    }
-  };
+  // const handleHashPassword = async () => {
+  //   try {
+  //     return hash;
+  //   } catch (error) {
+  //     console.error("Coordiation not match:", error);
+  //   }
+  // };
   // GENERATE RANDOM NUMBER
   const generateRandomNumber = () => {
     setCollege_id(Math.floor(Math.random() * 9000000000 + 100000000));

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { getDatabase, ref, get, update } from "firebase/database";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -9,12 +9,12 @@ const AccreditationInput = () => {
 
   // const { userToken } = useContext(AppContext);
   const userToken = localStorage.getItem("userToken");
-  console.log(userToken);
+  // console.log(userToken);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!userToken) {
-      console.log("User token is missing!");
+      console.log("Sign In first!");
       return;
     }
 
@@ -63,7 +63,7 @@ const AccreditationInput = () => {
           console.log("User with the given token not found.");
         }
       } else {
-        console.log("No data available.");
+        console.log("404 Error.");
       }
     } catch (error) {
       console.error("Error updating location: ", error);
@@ -114,4 +114,4 @@ const AccreditationInput = () => {
   );
 };
 
-export default AccreditationInput;
+export default React.memo(AccreditationInput);

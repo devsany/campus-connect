@@ -16,7 +16,7 @@ const Home = () => {
     );
     setData(result);
   };
-  console.log(searchValue);
+  // console.log(searchValue);
   useEffect(() => {
     const fetchData = async () => {
       const db = getDatabase();
@@ -35,13 +35,13 @@ const Home = () => {
           console.log("No data available");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error("Database is out of server:", error);
       }
     };
 
     fetchData(); // Fetch data when component mounts
   }, []); // Empty dependency array to run only once on mount
-  console.log(data);
+  // console.log(data);
   const handleName = () => {
     setSearchValue("name");
     setToggle(false);

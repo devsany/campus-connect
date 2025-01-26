@@ -7,7 +7,7 @@ const Accreditation = () => {
 
   const [accreditation, setAccreditation] = useState([]);
   // const { userToken } = useContext(AppContext);
-  console.log(userToken);
+  // console.log(userToken);
   useEffect(() => {
     const fetchData = async () => {
       const db = getDatabase();
@@ -23,10 +23,10 @@ const Accreditation = () => {
           );
           setAccreditation(userObj.accreditation);
         } else {
-          console.log("No data available");
+          console.log("404 Error: Data not found");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error("Data is not available:", error);
       }
     };
 
@@ -68,4 +68,4 @@ const Accreditation = () => {
   );
 };
 
-export default Accreditation;
+export default React.memo(Accreditation);

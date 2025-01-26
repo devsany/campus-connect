@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AppContext } from "../context/Context";
-import { database } from "../firebase/firebaseCofig";
+import { AppContext } from "../../context/Context";
+import { database } from "../../firebase/firebaseCofig";
 import { get, getDatabase, ref } from "firebase/database";
 
 const CollegeLocation = () => {
   const [location, setLocation] = useState([]);
   // const { userToken } = useContext(AppContext);
   const userToken = localStorage.getItem("userToken");
-  console.log(userToken);
+  // console.log(userToken);
   useEffect(() => {
     const fetchData = async () => {
       const db = getDatabase();
@@ -24,16 +24,16 @@ const CollegeLocation = () => {
           );
           setLocation(userObj.location);
         } else {
-          console.log("No data available");
+          console.log("404 Error: Data not found");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error("Temprory database is not working :", error);
       }
     };
 
     fetchData(); // Fetch data when component mounts
   }, []); // Empty dependency array to run only once on mount
-  console.log(location);
+  // console.log(location);
   return (
     <div>
       <div className="flex items-center space-x-2">
@@ -92,4 +92,4 @@ const CollegeLocation = () => {
   );
 };
 
-export default CollegeLocation;
+export default React.memo(CollegeLocation);

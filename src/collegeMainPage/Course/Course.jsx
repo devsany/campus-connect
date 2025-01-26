@@ -49,4 +49,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export default React.memo(Course);

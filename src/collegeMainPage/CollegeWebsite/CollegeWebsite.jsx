@@ -20,10 +20,10 @@ const CollegeWebsite = () => {
           );
           setWebsite(userObj.website);
         } else {
-          console.log("No data available");
+          console.log("404 Error: Data not found");
         }
       } catch (error) {
-        console.error("Error getting data from Firebase:", error);
+        console.error("Corrently database is not availbale:", error);
       }
     };
 
@@ -65,4 +65,4 @@ const CollegeWebsite = () => {
   );
 };
 
-export default CollegeWebsite;
+export default React.memo(CollegeWebsite);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CollegeMainPageHeader from "./CollegeMainPageHeader/CollegeMainPageHeader";
 import CollegeLocation from "./CollegeLocation/CollegeLocation";
-import Accreditation from "./Accreditation/";
+import Accreditation from "./Accreditation";
 import CoursesOffered from "./CoursesOffered";
 import CollegeContact from "./CollegeContact/CollegeContact";
 import CollegeWebsite from "./CollegeWebsite/CollegeWebsite";

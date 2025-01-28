@@ -1,14 +1,14 @@
 {
-  "name": "career-guidance--a-",
+  "name": "career-guidance",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "test": "vitest",
-    "preview": "vite preview"
+    "career:dev": "vite",
+    "career:build": "vite build",
+    "career:lint": "eslint .",
+    "career:test": "vitest",
+    "career:preview": "vite preview"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

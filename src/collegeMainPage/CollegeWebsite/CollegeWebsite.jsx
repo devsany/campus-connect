@@ -60,7 +60,7 @@ const CollegeWebsite = () => {
           </NavLink>
         </div>
       </div>
-      <div className="font-semibold">{website.website}</div>
+      <div className="font-semibold">{website?.website}</div>
     </div>
   );
 };

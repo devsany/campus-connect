@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from "react";
 import { database } from "../firebase/firebaseCofig";
 import { push, ref } from "firebase/database";
+import bcrypt from "bcryptjs";
+import { v4 as uuidv4 } from "uuid"; // Import UUID
 
 const StudentRegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -23,10 +25,16 @@ const StudentRegistrationPage = () => {
     }));
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password === formData.conformPassword) {
+      const userToken = uuidv4();
+
       const formRef = ref(database, "studentRegistrationPage");
+      const saltRounds = 10;
+
+      const hash = await bcrypt.hash(formData.password, saltRounds);
+
       push(formRef, {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -34,9 +42,21 @@ const StudentRegistrationPage = () => {
         phone: formData.phone,
         dob: formData.dob,
         gender: formData.gender,
+        password: hash,
+        userToken: userToken,
       })
         .then(() => {
           alert("Form submitted successfully!");
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            dob: "",
+            gender: "",
+            password: "",
+            conformPassword: "",
+          });
         })
         .catch((error) => {
           console.error("Error posting data: ", error);
@@ -48,8 +68,7 @@ const StudentRegistrationPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-[80px] bg-white shadow-
-    lg rounded-lg ">
+    <div className="max-w-md mx-auto p-6 mt-[80px] bg-white shadow-lg rounded-lg ">
       <h1 className="text-2xl font-bold text-center mb-6">
         Student Registration Page
       </h1>

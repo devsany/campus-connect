@@ -13,6 +13,7 @@ import AccreditationInput from "./collegeMainPage/AccreditationInput/";
 import CollegeContactInput from "./collegeMainPage/CollegeContactInput/CollegeContactInput";
 import CollegeWebsiteInput from "./collegeMainPage/CollegeWebsiteInput/CollegeWebsiteInput";
 import CourseInput from "./collegeMainPage/CourseInput/CourseInput";
+import CollegeIdSection from "./collegeMainPage/collegeIdSection/CollegeIdSection";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             path="/college_main_page/:id/college_course_input"
             element={<CourseInput />}
           />
+          <Route path="/:id" element={<CollegeIdSection />} />
         </Routes>
         {/* <CollegeMainPage />
         <StudentAdditionalDetail />

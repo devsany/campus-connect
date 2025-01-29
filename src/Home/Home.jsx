@@ -1,6 +1,7 @@
 import { get, getDatabase, ref } from "firebase/database";
 import React, { useEffect, useState } from "react";
 import styles from "./Data.module.scss";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ const Home = () => {
 
     fetchData(); // Fetch data when component mounts
   }, []); // Empty dependency array to run only once on mount
-  // console.log(data);
+  console.log(data);
   const handleName = () => {
     setSearchValue("name");
     setToggle(false);
@@ -223,11 +224,14 @@ const Home = () => {
                       </div>
                       <div className="text-gray-600">
                         <div className="text-lg font-semibold text-gray-800">
-                          {item?.location?.state}
+                          {item?.location?.state} ,{item?.location?.city}
                         </div>
-                        <div className="text-sm text-gray-500">
-                          {item?.location?.city}
-                        </div>
+                        <NavLink
+                          to={`/${item.userToken}`}
+                          className="text-sm text-blue-700"
+                        >
+                          View
+                        </NavLink>
                       </div>
                     </div>
 
@@ -238,18 +242,20 @@ const Home = () => {
                         <div>
                           <button>
                             <svg
-                              className="w-8 h-8 text-gray-400 dark:text-white"
+                              className="mr-2 mt-1 w-6 h-6 text-gray-800 dark:text-white"
                               aria-hidden="true"
                               xmlns="http://www.w3.org/2000/svg"
                               width="24"
                               height="24"
-                              fill="currentColor"
+                              fill="none"
                               viewBox="0 0 24 24"
                             >
                               <path
-                                fillRule="evenodd"
-                                d="M5 6a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm0 12a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm1.65-9.76A1 1 0 0 0 5 9v6a1 1 0 0 0 1.65.76l3.5-3a1 1 0 0 0 0-1.52l-3.5-3ZM12 10a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1Zm0 4a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1Z"
-                                clipRule="evenodd"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="m13.46 8.291 3.849-3.849a1.5 1.5 0 0 1 2.122 0l.127.127a1.5 1.5 0 0 1 0 2.122l-3.84 3.838a4 4 0 0 0-2.258-2.238Zm0 0a4 4 0 0 1 2.263 2.238l3.662-3.662a8.961 8.961 0 0 1 0 10.27l-3.676-3.676m-2.25-5.17 3.678-3.676a8.961 8.961 0 0 0-10.27 0l3.662 3.662a4 4 0 0 0-2.238 2.258L4.615 6.863a8.96 8.96 0 0 0 0 10.27l3.662-3.662a4 4 0 0 0 2.258 2.238l-3.672 3.676a8.96 8.96 0 0 0 10.27 0l-3.662-3.662a4.001 4.001 0 0 0 2.238-2.262m0 0 3.849 3.848a1.5 1.5 0 0 1 0 2.122l-.127.126a1.499 1.499 0 0 1-2.122 0l-3.838-3.838a4 4 0 0 0 2.238-2.258Zm.29-1.461a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm-7.718 1.471-3.84 3.838a1.5 1.5 0 0 0 0 2.122l.128.126a1.5 1.5 0 0 0 2.122 0l3.848-3.848a4 4 0 0 1-2.258-2.238Zm2.248-5.19L6.69 4.442a1.5 1.5 0 0 0-2.122 0l-.127.127a1.5 1.5 0 0 0 0 2.122l3.849 3.848a4 4 0 0 1 2.238-2.258Z"
                               />
                             </svg>
                           </button>

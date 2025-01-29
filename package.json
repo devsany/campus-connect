@@ -8,7 +8,8 @@
     "career:build": "vite build",
     "career:lint": "eslint .",
     "career:test": "vitest",
-    "career:preview": "vite preview"
+    "career:preview": "vite preview",
+    "career:server": "serve -s build"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

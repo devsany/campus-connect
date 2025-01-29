@@ -67,8 +67,8 @@ const CollegeContact = () => {
         </div>
       </div>
       <div>
-        <div className="font-semibold">phone: {contact.phone}</div>
-        <div className="font-semibold">email: {contact.email}</div>
+        <div className="font-semibold">phone: {contact?.phone}</div>
+        <div className="font-semibold">email: {contact?.email}</div>
       </div>
     </div>
   );

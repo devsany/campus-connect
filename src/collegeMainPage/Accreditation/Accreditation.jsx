@@ -63,7 +63,7 @@ const Accreditation = () => {
           </NavLink>
         </div>
       </div>
-      <div className="font-semibold">{accreditation.accreditation}</div>
+      <div className="font-semibold">{accreditation?.accreditation}</div>
     </div>
   );
 };

@@ -69,23 +69,23 @@ const CollegeLocation = () => {
       <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
         <div>
           <span className="font-medium">Street:</span>
-          <span className="ml-2">{location.street}</span>
+          <span className="ml-2">{location?.street}</span>
         </div>
         <div>
           <span className="font-medium">City:</span>
-          <span className="ml-2">{location.city}</span>
+          <span className="ml-2">{location?.city}</span>
         </div>
         <div>
           <span className="font-medium">State:</span>
-          <span className="ml-2">{location.state}</span>
+          <span className="ml-2">{location?.state}</span>
         </div>
         <div>
           <span className="font-medium">Country:</span>
-          <span className="ml-2">{location.country}</span>
+          <span className="ml-2">{location?.country}</span>
         </div>
         <div>
           <span className="font-medium">Postal code:</span>
-          <span className="ml-2">{location.postal_code}</span>
+          <span className="ml-2">{location?.postal_code}</span>
         </div>
       </div>
     </div>
